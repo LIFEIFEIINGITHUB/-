@@ -1,0 +1,70 @@
+//Call REJECT
+Call 开始战斗
+Call ERROR1
+Call ERROR2
+Call kill
+Delay 10
+Sub REJECT
+    FindPic 850,200,1600,600,"Attachment:\精简版悬赏.bmp",0.7,REWARDX,REWARDY
+    If REWARDX > 0 And REWARDY > 0 Then 
+        XX = REWARDX + 175
+        XY = REWARDY - 45
+        MoveTo XX, XY
+        LeftClick 1
+        
+    End If
+End Sub
+Sub ERROR1
+    FindPic 1200,200,1920,1080,"Attachment:\队友来悬赏了.bmp",0.8,ERROR1X,ERROR1Y
+    If ERROR1X > 0 And ERROR1Y > 0 Then 
+        Delay 2500
+        FindPic 1200,200,1920,1080,"Attachment:\队友来悬赏了.bmp",0.9,ERROR1X,ERROR1Y
+        If ERROR1X > 0 And ERROR1Y > 0 Then
+            RunApp "E:\CloudMusic\石川淳 - サンドキャニオン.mp3"
+            Delay 10000
+            RunApp "F:\Onmyoji\Launch.exe"
+            Delay  3000
+            RunApp "F:\Onmyoji\Launch.exe"
+        End If
+    End If
+End Sub
+Sub ERROR2
+    FindPic 1200,200,1920,1080,"Attachment:\队友都躺尸了.bmp",0.8,ERROR2X,ERROR2Y
+    If ERROR2X > 0 And ERROR2Y > 0 Then 
+        Delay 2500
+        FindPic 1200,200,1920,1080,"Attachment:\队友都躺尸了.bmp",0.9,ERROR2X,ERROR2Y
+        If ERROR2X > 0 And ERROR2Y > 0 Then 
+            RunApp "E:\CloudMusic\石川淳 - サンドキャニオン.mp3"
+            Delay 10000
+            RunApp "F:\Onmyoji\Launch.exe"
+            Delay  3000
+            RunApp "F:\Onmyoji\Launch.exe"
+        End If
+    End If
+End Sub
+Sub kill
+    FindPic 500,200,1120,550,"Attachment:\战败2.bmp",0.6,LOSEX,LOSEY
+    If LOSEX > 0 And LOSEY > 0 Then 
+        Delay 1000
+        RunApp "E:\song\JUSF周存\JUSF周存 - 我们来玩成语接龙吧.mp3"
+        Delay 30000
+        RunApp "F:\Onmyoji\Launch.exe"
+        Delay 5000
+        RunApp "F:\Onmyoji\Launch.exe"
+    End If
+End Sub
+Sub 开始战斗
+    FindPic 1200,600,1920,1080,"Attachment:\开始战斗.bmp",0.9,READYX,READYY
+    If READYX > 0 And READYY > 0 Then
+        TracePrint "ready"
+        READYX2 = READYX + 19
+        READYY2 = READYY + 47
+        rndreadyx = Int((170 + 1) * Rnd + READYX2)
+        rndreadyy = Int((60 + 1) * Rnd + READYY2)
+        MoveTo rndreadyx, rndreadyy
+        LeftClick 1
+        
+        LeftClick 1
+        // Else TracePrint "not ready yet"
+    End If
+End Sub
