@@ -1,0 +1,95 @@
+//Dim LTX, LTY, RBX, RBY, SX, SY, SX2, SY2, SX3, SY3, rndX
+//Dim rndY, rndX2, rndY2, rndX3, rndY3, time
+//Dim READYX, READYY, READYX2, READYY2, rndreadyx, rndreadyy
+Dim time
+Randomize
+
+Call 标记大蛇
+Call REJECT
+//Call 开始战斗
+//Call kill
+
+Sub 开始战斗
+    FindPic 0,0,1920,1096,"Attachment:\开始战斗2.bmp",0.8,READYX,READYY
+    If READYX > 0 And READYY > 0 Then
+        TracePrint "ready"
+        READYX2 = READYX + 263
+        READYY2 = READYY + 614
+        rndreadyx = Int((200 + 1) * Rnd + READYX2)
+        rndreadyy = Int((60 + 1) * Rnd + READYY2)
+        MoveTo rndreadyx, rndreadyy
+        LeftClick 1
+        // Else TracePrint "not ready yet"
+    End If
+End Sub
+Sub 标记大蛇
+    FindPic 250,0,850,300,"Attachment:\头像.bmp",0.7,LTX,LTY
+    If LTX > 0 And LTY > 0 Then 
+        SX = LTX + 750
+        SY = LTY + 190
+        SX2 = LTX - 45
+        SY2 = LTY + 30
+        SX3 = LTX - 45
+        SY3 = LTY + 830
+        rndX = Int((100 + 1) * Rnd + SX)
+        rndY = Int((53 + 1) * Rnd + SY)
+        rndX2 = Int((15 + 1) * Rnd + SX2)
+        rndY2 = Int((46 + 1) * Rnd + SY2)
+        rndX3 = Int((15 + 1) * Rnd + SX3)
+        rndY3 = Int((45 + 1) * Rnd + SY3)
+        MoveTo rndX, rndY
+        LeftClick 1
+        Delay 50
+        MoveTo rndX2, rndY2
+        LeftClick 1
+        Delay 50
+        MoveTo rndX3, rndY3
+        LeftClick 1
+        time = Int((800+ 1) * Rnd + 700)
+        Delay time
+        //Else TracePrint "not find onmyoji"
+    End If
+End Sub
+Sub REJECT
+    FindPic 850,200,1600,600,"Attachment:\精简版悬赏.bmp",0.7,REWARDX,REWARDY
+    If REWARDX > 0 And REWARDY > 0 Then 
+        XX = REWARDX + 175
+        XY = REWARDY - 45
+        MoveTo XX, XY
+        LeftClick 1
+        
+    End If
+End Sub
+Sub ERROR1
+    FindPic 1200,200,1920,1080,"Attachment:\队友来悬赏了.bmp",0.7,ERROR1X,ERROR1Y
+    If ERROR1X > 0 And ERROR1Y > 0 Then 
+        Delay 6000
+        RunApp "E:\CloudMusic\石川淳 - サンドキャニオン.mp3"
+        Delay 10000
+        RunApp "F:\Onmyoji\Launch.exe"
+        Delay  3000
+        RunApp "F:\Onmyoji\Launch.exe"
+    End If
+End Sub
+Sub ERROR2
+    FindPic 1200,200,1920,1080,"Attachment:\队友都躺尸了.bmp",0.7,ERROR2X,ERROR2Y
+    If ERROR2X > 0 And ERROR2Y > 0 Then 
+        Delay 6000
+        RunApp "E:\CloudMusic\石川淳 - サンドキャニオン.mp3"
+        Delay 10000
+        RunApp "F:\Onmyoji\Launch.exe"
+        Delay  3000
+        RunApp "F:\Onmyoji\Launch.exe"
+    End If
+End Sub
+Sub kill
+    FindPic 500,200,1120,550,"Attachment:\战败2.bmp",0.6,LOSEX,LOSEY
+    If LOSEX > 0 And LOSEY > 0 Then 
+        Delay 1000
+        RunApp "E:\song\JUSF周存\JUSF周存 - 我们来玩成语接龙吧.mp3"
+        Delay 30000
+        RunApp "F:\Onmyoji\Launch.exe"
+        Delay 5000
+        RunApp "F:\Onmyoji\Launch.exe"
+    End If
+End Sub
